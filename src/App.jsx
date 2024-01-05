@@ -4,6 +4,7 @@ import Home from "./pages/home";
 import SearchAppBar from "./components/appBar";
 import Drinks from "./pages/drinks";
 import Meals from "./pages/meals";
+import Recipe from "./pages/recipe";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/drinks" element={<Drinks />} />
           <Route path="/meals" element={<Meals />} />
+          <Route path="/recipe/:id" element={<Recipe />} />
         </Route>
       </Routes>
     </BrowserRouter>

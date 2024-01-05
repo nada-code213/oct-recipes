@@ -11,7 +11,7 @@ export default function Home() {
     const app_key = "61e932232dfb391c3b75d5220a4caa6d";
     axios
       .get(
-        `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}&q=pasta`
+        `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}&q=meals%20and%20drinks`
       )
       .then((res) => {
         setRecipes(res.data.hits);
@@ -40,15 +40,7 @@ export default function Home() {
             <p>Loading</p>
           ) : (
             recipes.map((e) => {
-              return (
-                <RecipeCard
-                  recipe={{
-                    title: e.recipe.label,
-                    image: e.recipe.image,
-                    description: e.recipe.cuisineType,
-                  }}
-                />
-              );
+              return <RecipeCard key={e.uri} recipe={e.recipe} />;
             })
           )}
         </div>
