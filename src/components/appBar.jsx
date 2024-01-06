@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Button } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -48,6 +50,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const [searchInput, setSearchInput] = useState("");
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -112,11 +115,25 @@ export default function SearchAppBar() {
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
+
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              value={searchInput}
+              onChange={(event) => {
+                setSearchInput(event.target.value);
+              }}
             />
           </Search>
+          <Link reloadDocument to={"/search-result/" + searchInput}>
+            <Button
+              sx={{ marginLeft: 4 }}
+              variant="contained"
+              color="secondary"
+            >
+              Search
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>

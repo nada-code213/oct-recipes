@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import RecipeCard from "../components/recipeCard";
-import { CircularProgress } from "@mui/material";
 
-export default function Meals() {
+export default function SearchResults() {
+  const { query } = useParams();
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -11,7 +12,7 @@ export default function Meals() {
     const app_key = "";
     axios
       .get(
-        `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}&q=meals`
+        `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}&q=${query}`
       )
       .then((res) => {
         setRecipes(res.data.hits);
@@ -25,9 +26,18 @@ export default function Meals() {
   return (
     <div>
       <section className="recipes">
+        <div className="header">
+          <div className="line"></div>
+          <h2>Our Recipes</h2>
+          <div className="line"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi quos
+          excepturi cum placeat labore quibusdam?
+        </p>
         <div className="content">
           {loading ? (
-            <CircularProgress />
+            <p>Loading</p>
           ) : (
             recipes.map((e) => {
               return <RecipeCard key={e.uri} recipe={e.recipe} />;

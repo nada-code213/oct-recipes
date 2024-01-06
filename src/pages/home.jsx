@@ -7,8 +7,8 @@ export default function Home() {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const app_id = "35842648";
-    const app_key = "61e932232dfb391c3b75d5220a4caa6d";
+    const app_id = "";
+    const app_key = "";
     axios
       .get(
         `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}&q=meals%20and%20drinks`
